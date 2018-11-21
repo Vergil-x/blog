@@ -145,6 +145,24 @@ cmd中</p>
 <p>好了以后点击这个</p>
 <img src="/2018/11/19/傻瓜式建站教程/p5.png">
 <img src="/2018/11/19/傻瓜式建站教程/p6.png">
+<p>好了以后先放一边
+打开cmd输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh keygen</span><br></pre></td></tr></table></figure>
+<p>生成你的SSH公钥和私钥，命令输完会要求你设置一个密码
+然后在c盘-&gt;用户-&gt;自己的用户名-&gt;.ssh 查看 id_rsa.pub文件
+复制里面的内容
+然后在github账号设置里添加SSHkey</p>
+<img src="/2018/11/19/傻瓜式建站教程/p7.png">
+<p>接着在nmsl文件夹中右键git bash输入以下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin XXXXX</span><br></pre></td></tr></table></figure>
+<p>XXXXX的内容点这里复制</p>
+<img src="/2018/11/19/傻瓜式建站教程/p8.png">
+<p>好了以后修改nmsl文件夹下的config.yml
+拉到最下面修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: XXXXX</span><br></pre></td></tr></table></figure>
+<p>XXXXX就是上面那个
+好了以后保存
+打开cmd输入</p>
 <p>后面有空在写。。睡觉了</p>
 
         </div>
