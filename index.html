@@ -82,6 +82,64 @@
     
         <article class="post-abstract">
             <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/12/03/spring学习/">spring学习</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-12-03</span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <h4>装配BEAN</h4>
+<ol>
+<li>XML显式装配</li>
+</ol>
+<p>百度一下</p>
+<ol start="2">
+<li>JAVAconfig类显式装配</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JavaConfig</span> </span>&#123;</span><br><span class="line"><span class="comment">////声明bean</span></span><br><span class="line">    <span class="meta">@Bean</span>(name=<span class="string">"xxx"</span>)</span><br><span class="line"><span class="comment">//不命名默认同方法名</span></span><br><span class="line"><span class="comment">//可以随便干嘛，只要最后返回一个正确的对象就行</span></span><br><span class="line"> <span class="keyword">public</span> CompactDisc sgtPeppers&#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="keyword">new</span> SgtPeppers();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">////装配bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> CDPlayer <span class="title">cdPlayer</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//直接引用创建Bean的方法</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> CDPlayer(sgtPeppers)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//另一种bean注入方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> CDPlayer <span class="title">cdPlayer</span><span class="params">(CompactDisc compactDisc)</span></span>&#123;</span><br><span class="line"><span class="comment">//把compactDisc作为参数传入</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> CDPlayer(compactDisc);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//或者用setter注入</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>自动化发现和装配</li>
+<li>组件扫描@component</li>
+<li>自动装配@autowire
+@Qualifier(&quot;name&quot;)多个匹配bean时的限定</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="comment">//默认bean的Id为类名，首字母小写</span></span><br><span class="line"><span class="comment">//@Component("xxx")自己命名</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CDplayer</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="comment">//默认只扫描配置所在的包</span></span><br><span class="line"><span class="comment">//@ComponentScan(basePackages= "包名")</span></span><br><span class="line"><span class="comment">//@ComponentScan(basePackages= &#123;"包名1","包名2"&#125;)</span></span><br><span class="line"><span class="comment">//@ComponentScan(basePackageClasses=XXX.class)扫描该类所在的包，建议扫描空接口，保持重构性</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5>导入混合配置</h5>
+<h6>java导入xml</h6>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Import</span>(xxx.class)</span><br><span class="line"><span class="meta">@ImportResource</span>(<span class="string">"classpath:xxx.xml"</span>)</span><br></pre></td></tr></table></figure>
+<h6>xml导入java</h6>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">import</span> resource=<span class="string">"xxx.xml"</span>/&gt;</span><br><span class="line">&lt;bean <span class="class"><span class="keyword">class</span></span>=<span class="string">"配置.class"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<h5>其他注解</h5>
+<p>@scope 更改创建BEAN的方案，默认单例
+@PropertySource(&quot;classpath:ldap.properties&quot;)
+引用外部值
+@value(&quot;${ldap.xxx}&quot;)
+使用占位符需要配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> PropertySourcesPlaceholderConfigurer <span class="title">propertySourcesPlaceholderConfigurer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> PropertySourcesPlaceholderConfigurer();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/11/29/Security学习总结/">Security学习总结</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-11-29</span>
+                
+            </div>
+            <div class="post-content">
+                
+                    
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
                 <h2><a class="post-title-link" href="/2018/11/22/maven命令小结/">maven命令小结</a></h2>
             </div>
             <div class="post-meta">
