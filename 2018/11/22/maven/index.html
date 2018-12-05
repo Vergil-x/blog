@@ -81,7 +81,7 @@
         <div class="posts">
     <article class="post-whole">
         <div class="post-title">
-            <h2 class="title">maven命令小结</h2>
+            <h2 class="title">maven</h2>
             <div class="post-meta">
                 <span class="post-time">2018-11-22</span>
                 
@@ -99,7 +99,9 @@
             <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、mvn compile 编译,将Java 源程序编译成 class 字节码文件。</span><br><span class="line">2、mvn test 测试，并生成测试报告</span><br><span class="line">3、mvn clean 将以前编译得到的旧的 class 字节码文件删除</span><br><span class="line">4、mvn package 打包,动态 web工程打 war包，Java工程打 jar 包。</span><br><span class="line">5、mvn install 将项目生成 jar 包放在本地仓库中，以便别的模块调用</span><br></pre></td></tr></table></figure>
 <p>主要就是这几个
 mvn package依次执行了resources、compile、testResources、testCompile、test、war(jar)(打包)6个阶段;打完包只放在本项目下</p>
-<p>mvn install依次执行了resources、compile、testResources、testCompile、test、war(jar)(打包)、install7个阶段;打完包还会送到本地仓库</p>
+<p>mvn install依次执行了resources、compile、testResources、testCompile、test、war(jar)(打包)、install7个阶段;打完包还会送到本地仓库
+<scope>xxx</scope>限定包使用范围，限定src/xxx
+记得控制测试包文件不要编译发布</p>
 
         </div>
         
