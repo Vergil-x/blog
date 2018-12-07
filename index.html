@@ -111,35 +111,13 @@
             </div>
             <div class="post-content">
                 
-                    <h4>装配BEAN</h4>
-<ol>
-<li>XML显式装配</li>
-</ol>
-<p>百度一下</p>
-<ol start="2">
-<li>JAVAconfig类显式装配</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JavaConfig</span> </span>&#123;</span><br><span class="line"><span class="comment">////声明bean</span></span><br><span class="line">    <span class="meta">@Bean</span>(name=<span class="string">"xxx"</span>)</span><br><span class="line"><span class="comment">//不命名默认同方法名</span></span><br><span class="line"><span class="comment">//可以随便干嘛，只要最后返回一个正确的对象就行</span></span><br><span class="line"> <span class="keyword">public</span> CompactDisc sgtPeppers&#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="keyword">new</span> SgtPeppers();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">////装配bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> CDPlayer <span class="title">cdPlayer</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//直接引用创建Bean的方法</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> CDPlayer(sgtPeppers)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//另一种bean注入方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> CDPlayer <span class="title">cdPlayer</span><span class="params">(CompactDisc compactDisc)</span></span>&#123;</span><br><span class="line"><span class="comment">//把compactDisc作为参数传入</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> CDPlayer(compactDisc);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//或者用setter注入</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>自动化发现和装配</li>
-<li>组件扫描@component</li>
-<li>自动装配@autowire
-@Qualifier(&quot;name&quot;)多个匹配bean时的限定</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="comment">//默认bean的Id为类名，首字母小写</span></span><br><span class="line"><span class="comment">//@Component("xxx")自己命名</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CDplayer</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="comment">//默认只扫描配置所在的包</span></span><br><span class="line"><span class="comment">//@ComponentScan(basePackages= "包名")</span></span><br><span class="line"><span class="comment">//@ComponentScan(basePackages= &#123;"包名1","包名2"&#125;)</span></span><br><span class="line"><span class="comment">//@ComponentScan(basePackageClasses=XXX.class)扫描该类所在的包，建议扫描空接口，保持重构性</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5>导入混合配置</h5>
-<h6>java导入xml</h6>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Import</span>(xxx.class)</span><br><span class="line"><span class="meta">@ImportResource</span>(<span class="string">"classpath:xxx.xml"</span>)</span><br></pre></td></tr></table></figure>
-<h6>xml导入java</h6>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">import</span> resource=<span class="string">"xxx.xml"</span>/&gt;</span><br><span class="line">&lt;bean <span class="class"><span class="keyword">class</span></span>=<span class="string">"配置.class"</span>/&gt;</span><br></pre></td></tr></table></figure>
-<h5>其他注解</h5>
-<p>@scope 更改创建BEAN的方案，默认单例
-@PropertySource(&quot;classpath:ldap.properties&quot;)
-引用外部值
-@value(&quot;${ldap.xxx}&quot;)
-使用占位符需要配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> PropertySourcesPlaceholderConfigurer <span class="title">propertySourcesPlaceholderConfigurer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> PropertySourcesPlaceholderConfigurer();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+                    <p>基础spring学习</p>
+                    <div class="read-more">
+                        <a href="/2018/12/03/spring学习/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
                 
             </div>
         </article>
@@ -155,6 +133,27 @@
             <div class="post-content">
                 
                     <a id="more"></a>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/11/22/maven命令小结/">maven</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-11-22</span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <p>常用命令记录</p>
+                    <div class="read-more">
+                        <a href="/2018/11/22/maven命令小结/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
                 
             </div>
         </article>
@@ -190,43 +189,13 @@ mvn package依次执行了resources、compile、testResources、testCompile、te
             </div>
             <div class="post-content">
                 
-                    <h3>克隆</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone XXXX##地址</span><br></pre></td></tr></table></figure>
-<h3>拉取远程分支</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin XXX :XXX</span><br><span class="line">git checkout XXX</span><br><span class="line">#xxx分支名，会建立映射</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch -vv</span><br><span class="line">#查看映射关系</span><br></pre></td></tr></table></figure>
-<h3>撤销最近一次提交</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD~</span><br></pre></td></tr></table></figure>
-<h3>放弃本次修改</h3>
-<p>未缓存</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout .</span><br></pre></td></tr></table></figure>
-<p>已缓存（add）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD .</span><br></pre></td></tr></table></figure>
-<p>已提交</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^</span><br></pre></td></tr></table></figure>
-<h3>合并分支</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout xxx</span><br><span class="line">#切换到要合并的分支</span><br><span class="line">git merge XXXX</span><br><span class="line">#合并被合并的分支</span><br></pre></td></tr></table></figure>
-<p>可能会有冲突，2个分支对同一个文件都有修改
-conflict 打开冲突文件格式如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span><br><span class="line"></span><br><span class="line">所在分支的内容</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">=======</span><br><span class="line">被合并分支的内容</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-<p>手动合并用对比工具看一下
-合并完成后</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add -A</span><br><span class="line">git commit -m&quot;xxx&quot;</span><br></pre></td></tr></table></figure>
-<h3>储藏相关</h3>
-<p>tips：此命令对于已经被跟踪的文件才会有效！</p>
-<p>git stash :保存当前工作区和暂存区的修改。</p>
-<p>git stash save “描述信息” :如果保存的内容过多可能会导致无法辨别需要恢复的保存记录，这时候就加上 save参数后面双引号后面填写此次保存的描述信息。</p>
-<p>git stash list : 显示保存列表。</p>
-<p>git stash pop : 恢复最近保存的记录并把恢复的记录从保存列表中删除。只恢复工作区！（默认会将被恢复的操作保留在工作区，但是不会自动帮你重新暂存）</p>
-<p>git stash pop --index ：与上面命令的效果一样但是还会恢复暂存区！</p>
-<p>git stash pop stash@{序号} ：恢复保存列表里面指定的保存记录，并把恢复的记录从保存列表中删除。</p>
-<p>git stash --patch :保存之前先比较工作区和HEAD之间的区别，然后选择是否重新编辑需要保存的文件。</p>
-<p>git stash apply ：恢复最近保存的记录但不会删除保存列表里面对应的记录。（默认会将被恢复的操作保留在工作区，但是不会自动帮你重新暂存）</p>
-<p>git stash drop:删除保存列表里面最近保存的记录。后面加上 stash@{序号}可以删除指定的保存记录。</p>
-<p>git stash clear :删除保存列表里面所以的保存记录。</p>
-<p>git stash 分支名 stash@{序号}：修改了demo里面的内容之后使用 git stash 保存demo文件里面的修改，如果此时你修改了demo文件然后在使用git stash pop或者git stash apply 恢复之前修改demo里的内容，那么此时可能会引发冲突。此时就可以使用此命令。这个命令会创建一个分支然后在创建的分支上把保存的记录恢复出来。</p>
-<p>tips :当你在master分支上工作时你不想把已经修改的内容提交到master分支上而想提交到feature分支上，这时候可以使用git stash把当前工作区和暂存区保存起来然后在切换到feature分支上pop或者apply出来。这样你可以把在master分支工作时修改的内容提交到feature分支上。</p>
-
+                    <p>常用命令记录</p>
+                    <div class="read-more">
+                        <a href="/2018/11/20/git常用命令/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
                 
             </div>
         </article>

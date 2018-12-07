@@ -78,119 +78,62 @@
 </header>
 <div class="main">
     <div class="content-inner">
-        <section class="archive">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+            <h2 class="title">maven</h2>
+            <div class="post-meta">
+                <span class="post-time">2018-11-22</span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
     
-    <div class="archive-title tag">
-        <h2 class="archive-name">学习</h2>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
     </div>
-    
+</div>
+        <div class="post-content">
+            <p>常用命令记录</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、mvn compile 编译,将Java 源程序编译成 class 字节码文件。</span><br><span class="line">2、mvn test 测试，并生成测试报告</span><br><span class="line">3、mvn clean 将以前编译得到的旧的 class 字节码文件删除</span><br><span class="line">4、mvn package 打包,动态 web工程打 war包，Java工程打 jar 包。</span><br><span class="line">5、mvn install 将项目生成 jar 包放在本地仓库中，以便别的模块调用</span><br></pre></td></tr></table></figure>
+<p>主要就是这几个
+mvn package依次执行了resources、compile、testResources、testCompile、test、war(jar)(打包)6个阶段;打完包只放在本项目下</p>
+<p>mvn install依次执行了resources、compile、testResources、testCompile、test、war(jar)(打包)、install7个阶段;打完包还会送到本地仓库
+<scope>xxx</scope>限定包使用范围，限定src/xxx
+记得控制测试包文件不要编译发布</p>
 
-    
-    
+        </div>
         
+        <div class="post-tag">
             
+            <a class="tag" href="/tags/笔记/" title="笔记">笔记</a>
             
-                
-                    
-                
-            
-
-            
-                <div class="archive-post">
-                    <span class="archive-post-time">
-                    2018-11-29
-                    </span>
-                    <span class="archive-post-title">
-                        <a class="archive-post-link" href="/2018/11/29/Security学习总结/">Security学习总结</a>
-                    </span>
-                </div>
-            
+        </div>
         
-
+    </article>
+</div>
+<div class="paginator">
     
         
-            
-            
-                
-            
-
-            
+            <a class="prev" href="/2018/11/29/Security学习总结/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">Security学习总结</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
         
-
+        
+            <a class="next" href="/2018/11/22/maven/">
+                <span class="nav-default">maven</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
     
-        
-            
-            
-                
-            
-
-            
-        
-
-    
-        
-            
-            
-                
-            
-
-            
-        
-
-    
-        
-            
-            
-                
-                    
-                
-            
-
-            
-                <div class="archive-post">
-                    <span class="archive-post-time">
-                    2018-12-03
-                    </span>
-                    <span class="archive-post-title">
-                        <a class="archive-post-link" href="/2018/12/03/spring学习/">spring学习</a>
-                    </span>
-                </div>
-            
-        
-
-    
-        
-            
-            
-                
-            
-
-            
-        
-
-    
-        
-            
-            
-                
-                    
-                
-            
-
-            
-                <div class="archive-post">
-                    <span class="archive-post-time">
-                    2018-12-04
-                    </span>
-                    <span class="archive-post-title">
-                        <a class="archive-post-link" href="/2018/12/04/springmvc/">springmvc</a>
-                    </span>
-                </div>
-            
-        
-
-    
-</section>
+</div>
+<div id="comment-container"></div>
     </div>
 </div>
 <footer class="footer-social">
