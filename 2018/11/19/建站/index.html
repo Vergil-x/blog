@@ -501,6 +501,22 @@ cmd中</p>
 
     
     
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <div id="comment"></div>
+    <script>
+    new Valine({
+        el: '#comment' ,
+        notify:false, 
+        verify:false, 
+        appId: "7URSREUksvyCBOrKrNwWpOaL-gzGzoHsz",
+        appKey: "L35KoWDOxgv1U9FYDGxbbukc",
+        placeholder: "说点什么吧😁",
+        path:window.location.pathname, 
+        avatar:'mm' 
+    });
+    </script>
+
 
     <!-- 评论 -->
 </main>
