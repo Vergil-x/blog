@@ -351,7 +351,11 @@
                 <span>Maven</span>
         </a>
         <div class="abstract-content">
-            <p>依赖和项目结构</p>
+            依赖和项目结构
+&lt;!-- more --&gt;
+123451、mvn compile 编译,将Java 源程序编译成 class 字节码文件。2、mvn test 测试，并生成测试报告3、mvn clean 将以前编译得到的旧的 class 字节码文件删除4、mvn package 打包,动态 web工程打 war包，Java工程打 jar 包。5、mvn install 将项目生成 jar 包放在本地仓库中，以便别的模块调用
+主要就是这几个
+mvn package依次执行了resources、compile、testResources、testCompile、test、war(...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -380,7 +384,24 @@
                 <span>Git</span>
         </a>
         <div class="abstract-content">
-            <p>版本控制</p>
+            版本控制
+&lt;!-- more --&gt;
+克隆
+1git clone XXXX##地址
+拉取远程分支
+123git fetch origin XXX :XXXgit checkout XXX#xxx分支名，会建立映射
+12git branch -vv#查看映射关系
+撤销最近一次提交
+1git reset HEAD~
+放弃本次修改
+未缓存
+1git checkout .
+已缓存（add）
+1git reset HEAD .
+已提交
+1git reset --hard HEAD^
+合并分支
+1234git checkout xxx#切换到要合并的分支git merge XXXX#合并...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -409,7 +430,31 @@
                 <span>建站</span>
         </a>
         <div class="abstract-content">
-            <p>博客搭建及部署</p>
+            博客搭建及部署
+&lt;!-- more --&gt;
+安装准备
+git代码管理
+nodejs博客运行环境
+mobexsterm连接服务器
+hexo 在安装nodejs后在cmd中
+1npm install hexo-cli -g
+vps 有很多我用的vultr
+域名 阿里云
+要实名认证后才能解析
+
+看一下git和nodejs装好没
+cmd中
+12git --versionnpm --version
+本地搭建
+新建一个空文件夹位置随便
+名字随便
+名字我取的nmsl
+打开cmd
+12cd  XXXXXX ##进到该文件夹，怎么进自己百度
+进来以后cmd里是这样的
+
+然后
+1hexo ini...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -631,6 +676,12 @@
     
     
     
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 11
@@ -707,9 +758,9 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="学习"><span class="iconfont-archer">&#xe606;</span>学习</span>
-    
         <span class="sidebar-tag-name" data-tags="工具"><span class="iconfont-archer">&#xe606;</span>工具</span>
+    
+        <span class="sidebar-tag-name" data-tags="学习"><span class="iconfont-archer">&#xe606;</span>学习</span>
     
         <span class="sidebar-tag-name" data-tags="笔记"><span class="iconfont-archer">&#xe606;</span>笔记</span>
     
@@ -748,15 +799,15 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="系统"><span class="iconfont-archer">&#xe60a;</span>系统</span>
-    
         <span class="sidebar-category-name" data-categories="工具"><span class="iconfont-archer">&#xe60a;</span>工具</span>
     
         <span class="sidebar-category-name" data-categories="Spring"><span class="iconfont-archer">&#xe60a;</span>Spring</span>
     
-        <span class="sidebar-category-name" data-categories="面试"><span class="iconfont-archer">&#xe60a;</span>面试</span>
+        <span class="sidebar-category-name" data-categories="系统"><span class="iconfont-archer">&#xe60a;</span>系统</span>
     
         <span class="sidebar-category-name" data-categories="数据库"><span class="iconfont-archer">&#xe60a;</span>数据库</span>
+    
+        <span class="sidebar-category-name" data-categories="面试"><span class="iconfont-archer">&#xe60a;</span>面试</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
